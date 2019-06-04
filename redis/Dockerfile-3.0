@@ -1,0 +1,21 @@
+FROM alpine:3.9.4
+
+EXPOSE 6379
+VOLUME ["/data"]
+WORKDIR /data
+COPY 3.0 /
+CMD ["redis-server", "/etc/redis.conf"]
+
+RUN apk add --no-cache --virtual=build-dep build-base openssl linux-headers wget \
+    && mkdir -p /usr/local/src/redis && cd /usr/local/src/redis \
+    && wget http://download.redis.io/releases/redis-3.2.8.tar.gz \
+    && tar -xf redis-3.2.8.tar.gz \
+    && cd /usr/local/src/redis/redis-3.2.8 \
+    && make \
+    && make install \
+    && cp redis.conf /etc/redis.conf \
+    && sed -i -e 's/bind 127.0.0.1/bind 0.0.0.0/' /etc/redis.conf \
+    && rm -rf /usr/local/src \
+    && rm -rf /tmp/* \
+    && rm -rf /var/cache/apk/* \
+    && apk del build-dep
