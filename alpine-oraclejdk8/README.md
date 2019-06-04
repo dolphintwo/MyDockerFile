@@ -1,4 +1,6 @@
-# Alpine-oraclejdk:8u211-slim
+# Alpine-oraclejdk:8u211
+
+> oracle-jdk8含中文字体支持
 
 ## 下载地址
 
@@ -8,11 +10,17 @@
 ## 构建
 
 ```shell
-docker build -t dolphintwo/oraclejdk:8u211-alpine .
+# oraclejdk
+docker build -t dolphintwo/alpine-oraclejdk:8u211 .
+# oraclejdk含中文字体支持
+docker build -f Dockerfile-cntt -t dolphintwo/alpine-oraclejdk:8u211-cntt .
 ```
 
 ## 拉取
 
 ```shell
-docker pull dolphintwo/oraclejdk:8u211-alpine
+# oraclejdk
+docker pull dolphintwo/alpine-oraclejdk:8u211
+# oraclejdk含中文字体支持
+docker pull dolphintwo/alpine-oraclejdk:8u211-cntt
 ```

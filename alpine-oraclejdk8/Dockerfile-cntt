@@ -30,7 +30,7 @@ RUN cd "/tmp" && \
         "jre/lib/security/README.txt"
 
 
-FROM dolphintwo/alpine-glibc:3.9.4
+FROM dolphintwo/alpine-cn:3.9.4
 LABEL maintainer="dolphintwo <dtdinghui2@gmail.com>"
 COPY --from=builder /tmp/jdk1.8.0_211 /usr/lib/jvm
 RUN ln -s "/usr/lib/jvm/bin/"* "/usr/bin/" && \
